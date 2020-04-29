@@ -1,0 +1,44 @@
+{
+    "name": "Cidade",
+    "fields": [
+        {
+            "fieldName": "municipio",
+            "fieldType": "Municipio",
+            "fieldValues": "BELEM,CASTANHAL,RECIFE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "estado",
+            "fieldType": "Estado",
+            "fieldValues": "RO,AC,AM,RR,PA,AP,TO,MA,PI,CE,RN,PB,PE,AL,SE,BA,MG,ES,RJ,SP,PR,SC,RS,MS,MT,GO,DF",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "participante",
+            "otherEntityRelationshipName": "cidade",
+            "relationshipName": "participantes"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "polo",
+            "otherEntityRelationshipName": "cidade",
+            "relationshipName": "polos"
+        }
+    ],
+    "changelogDate": "20190702224320",
+    "entityTableName": "cidade",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

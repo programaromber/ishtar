@@ -1,0 +1,40 @@
+{
+    "name": "Agenda",
+    "fields": [
+        {
+            "fieldName": "ano",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": 4,
+            "fieldValidateRulesMax": 4
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "evento",
+            "otherEntityRelationshipName": "agenda",
+            "relationshipName": "eventos"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "polo",
+            "otherEntityRelationshipName": "agendas",
+            "relationshipName": "polo",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190702224326",
+    "entityTableName": "agenda",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

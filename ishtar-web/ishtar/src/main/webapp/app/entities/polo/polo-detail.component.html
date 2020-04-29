@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="polo">
+            <h2><span jhiTranslate="ishtarApp.polo.detail.title">Polo</span> {{polo.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ishtarApp.polo.nome">Nome</span></dt>
+                <dd>
+                    <span>{{polo.nome}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.polo.email">Email</span></dt>
+                <dd>
+                    <span>{{polo.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.polo.ddd">Ddd</span></dt>
+                <dd>
+                    <span>{{polo.ddd}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.polo.telefone">Telefone</span></dt>
+                <dd>
+                    <span>{{polo.telefone}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.polo.cidade">Cidade</span></dt>
+                <dd>
+                    <div *ngIf="polo.cidade">
+                        <a [routerLink]="['/cidade', polo.cidade?.id, 'view']">{{polo.cidade?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/polo', polo.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

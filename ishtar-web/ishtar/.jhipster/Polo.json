@@ -1,0 +1,76 @@
+{
+    "name": "Polo",
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 80
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 80
+        },
+        {
+            "fieldName": "ddd",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 2
+        },
+        {
+            "fieldName": "telefone",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 10
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "local",
+            "otherEntityRelationshipName": "polo",
+            "relationshipName": "locais"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "agenda",
+            "otherEntityRelationshipName": "polo",
+            "relationshipName": "agendas"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "cidade",
+            "otherEntityRelationshipName": "polos",
+            "relationshipName": "cidade",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "responsavel",
+            "otherEntityRelationshipName": "polos",
+            "relationshipName": "responsavel",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190702224324",
+    "entityTableName": "polo",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

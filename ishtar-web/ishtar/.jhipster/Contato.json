@@ -1,0 +1,39 @@
+{
+    "name": "Contato",
+    "fields": [
+        {
+            "fieldName": "ddd",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 2
+        },
+        {
+            "fieldName": "telefone",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 10
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "responsavel",
+            "otherEntityRelationshipName": "contatos",
+            "relationshipName": "responsavel",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190702224321",
+    "entityTableName": "contato",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,91 @@
+{
+    "name": "Participante",
+    "fields": [
+        {
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 80
+        },
+        {
+            "fieldName": "nome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 80
+        },
+        {
+            "fieldName": "ddd",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 2
+        },
+        {
+            "fieldName": "telefone",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 10
+        },
+        {
+            "fieldName": "notificar",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "aceito",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "latitude",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "longitude",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "dataAtualizacao",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "participacao",
+            "otherEntityRelationshipName": "participante",
+            "relationshipName": "participacoes"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "cidade",
+            "otherEntityRelationshipName": "participantes",
+            "relationshipName": "cidade",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190702224323",
+    "entityTableName": "participante",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

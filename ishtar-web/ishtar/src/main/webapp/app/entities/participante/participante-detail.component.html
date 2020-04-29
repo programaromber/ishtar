@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="participante">
+            <h2><span jhiTranslate="ishtarApp.participante.detail.title">Participante</span> {{participante.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ishtarApp.participante.email">Email</span></dt>
+                <dd>
+                    <span>{{participante.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.participante.nome">Nome</span></dt>
+                <dd>
+                    <span>{{participante.nome}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.participante.ddd">Ddd</span></dt>
+                <dd>
+                    <span>{{participante.ddd}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.participante.telefone">Telefone</span></dt>
+                <dd>
+                    <span>{{participante.telefone}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.participante.notificar">Notificar</span></dt>
+                <dd>
+                    <span>{{participante.notificar}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.participante.aceito">Aceito</span></dt>
+                <dd>
+                    <span>{{participante.aceito}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.participante.latitude">Latitude</span></dt>
+                <dd>
+                    <span>{{participante.latitude}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.participante.longitude">Longitude</span></dt>
+                <dd>
+                    <span>{{participante.longitude}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.participante.dataAtualizacao">Data Atualizacao</span></dt>
+                <dd>
+                    <span>{{participante.dataAtualizacao}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.participante.cidade">Cidade</span></dt>
+                <dd>
+                    <div *ngIf="participante.cidade">
+                        <a [routerLink]="['/cidade', participante.cidade?.id, 'view']">{{participante.cidade?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/participante', participante.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

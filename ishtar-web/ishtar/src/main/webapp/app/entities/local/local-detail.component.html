@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="local">
+            <h2><span jhiTranslate="ishtarApp.local.detail.title">Local</span> {{local.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ishtarApp.local.logradouro">Logradouro</span></dt>
+                <dd>
+                    <span>{{local.logradouro}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.local.complememto">Complememto</span></dt>
+                <dd>
+                    <span>{{local.complememto}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.local.bairro">Bairro</span></dt>
+                <dd>
+                    <span>{{local.bairro}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.local.cep">Cep</span></dt>
+                <dd>
+                    <span>{{local.cep}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.local.numero">Numero</span></dt>
+                <dd>
+                    <span>{{local.numero}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.local.latitude">Latitude</span></dt>
+                <dd>
+                    <span>{{local.latitude}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.local.longitude">Longitude</span></dt>
+                <dd>
+                    <span>{{local.longitude}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.local.dataCadastro">Data Cadastro</span></dt>
+                <dd>
+                    <span>{{local.dataCadastro}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.local.ativo">Ativo</span></dt>
+                <dd>
+                    <span>{{local.ativo}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.local.polo">Polo</span></dt>
+                <dd>
+                    <div *ngIf="local.polo">
+                        <a [routerLink]="['/polo', local.polo?.id, 'view']">{{local.polo?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/local', local.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

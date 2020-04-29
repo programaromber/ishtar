@@ -1,0 +1,138 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-local-heading" jhiTranslate="ishtarApp.local.home.createOrEditLabel">Create or edit a Local</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.local.logradouro" for="field_logradouro">Logradouro</label>
+                    <input type="text" class="form-control" name="logradouro" id="field_logradouro"
+                           formControlName="logradouro"/>
+                    <div *ngIf="editForm.get('logradouro').invalid && (editForm.get('logradouro').dirty || editForm.get('logradouro').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('logradouro').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('logradouro').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 80 }">
+                        This field cannot be longer than 80 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.local.complememto" for="field_complememto">Complememto</label>
+                    <input type="text" class="form-control" name="complememto" id="field_complememto"
+                           formControlName="complememto"/>
+                    <div *ngIf="editForm.get('complememto').invalid && (editForm.get('complememto').dirty || editForm.get('complememto').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('complememto').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 80 }">
+                        This field cannot be longer than 80 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.local.bairro" for="field_bairro">Bairro</label>
+                    <input type="text" class="form-control" name="bairro" id="field_bairro"
+                           formControlName="bairro"/>
+                    <div *ngIf="editForm.get('bairro').invalid && (editForm.get('bairro').dirty || editForm.get('bairro').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('bairro').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('bairro').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 80 }">
+                        This field cannot be longer than 80 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.local.cep" for="field_cep">Cep</label>
+                    <input type="text" class="form-control" name="cep" id="field_cep"
+                           formControlName="cep"/>
+                    <div *ngIf="editForm.get('cep').invalid && (editForm.get('cep').dirty || editForm.get('cep').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cep').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cep').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 8 }">
+                        This field cannot be longer than 8 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.local.numero" for="field_numero">Numero</label>
+                    <input type="text" class="form-control" name="numero" id="field_numero"
+                           formControlName="numero"/>
+                    <div *ngIf="editForm.get('numero').invalid && (editForm.get('numero').dirty || editForm.get('numero').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('numero').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('numero').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 8 }">
+                        This field cannot be longer than 8 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.local.latitude" for="field_latitude">Latitude</label>
+                    <input type="number" class="form-control" name="latitude" id="field_latitude"
+                           formControlName="latitude"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.local.longitude" for="field_longitude">Longitude</label>
+                    <input type="number" class="form-control" name="longitude" id="field_longitude"
+                           formControlName="longitude"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.local.dataCadastro" for="field_dataCadastro">Data Cadastro</label>
+                    <div class="input-group">
+                        <input id="field_dataCadastro" type="text" class="form-control" name="dataCadastro" ngbDatepicker  #dataCadastroDp="ngbDatepicker" formControlName="dataCadastro"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dataCadastroDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('dataCadastro').invalid && (editForm.get('dataCadastro').dirty || editForm.get('dataCadastro').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dataCadastro').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.local.ativo" for="field_ativo">Ativo</label>
+                    <input type="checkbox" class="form-control" name="ativo" id="field_ativo"
+                           formControlName="ativo"/>
+                    <div *ngIf="editForm.get('ativo').invalid && (editForm.get('ativo').dirty || editForm.get('ativo').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ativo').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.local.polo" for="field_polo">Polo</label>
+                    <select class="form-control" id="field_polo" name="polo" formControlName="polo">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="poloOption.id === editForm.get('polo').value?.id ? editForm.get('polo').value : poloOption" *ngFor="let poloOption of polos; trackBy: trackPoloById">{{poloOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

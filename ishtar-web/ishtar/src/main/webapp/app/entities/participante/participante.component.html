@@ -1,0 +1,87 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="ishtarApp.participante.home.title">Participantes</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-participante" [routerLink]="['/participante/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="ishtarApp.participante.home.createLabel">
+            Create new Participante
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="participantes?.length === 0">
+        <span jhiTranslate="ishtarApp.participante.home.notFound">No participantes found</span>
+    </div>
+    <div class="table-responsive" *ngIf="participantes?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="email"><span jhiTranslate="ishtarApp.participante.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nome"><span jhiTranslate="ishtarApp.participante.nome">Nome</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ddd"><span jhiTranslate="ishtarApp.participante.ddd">Ddd</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="telefone"><span jhiTranslate="ishtarApp.participante.telefone">Telefone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="notificar"><span jhiTranslate="ishtarApp.participante.notificar">Notificar</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="aceito"><span jhiTranslate="ishtarApp.participante.aceito">Aceito</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="latitude"><span jhiTranslate="ishtarApp.participante.latitude">Latitude</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="longitude"><span jhiTranslate="ishtarApp.participante.longitude">Longitude</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dataAtualizacao"><span jhiTranslate="ishtarApp.participante.dataAtualizacao">Data Atualizacao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cidade.id"><span jhiTranslate="ishtarApp.participante.cidade">Cidade</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let participante of participantes ;trackBy: trackId">
+                <td><a [routerLink]="['/participante', participante.id, 'view' ]">{{participante.id}}</a></td>
+                <td>{{participante.email}}</td>
+                <td>{{participante.nome}}</td>
+                <td>{{participante.ddd}}</td>
+                <td>{{participante.telefone}}</td>
+                <td>{{participante.notificar}}</td>
+                <td>{{participante.aceito}}</td>
+                <td>{{participante.latitude}}</td>
+                <td>{{participante.longitude}}</td>
+                <td>{{participante.dataAtualizacao | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="participante.cidade">
+                        <a [routerLink]="['../cidade', participante.cidade?.id, 'view' ]" >{{participante.cidade?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/participante', participante.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/participante', participante.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'participante', { outlets: { popup: participante.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="participantes?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

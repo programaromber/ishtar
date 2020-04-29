@@ -1,0 +1,77 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="ishtarApp.polo.home.title">Polos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-polo" [routerLink]="['/polo/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="ishtarApp.polo.home.createLabel">
+            Create new Polo
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="polos?.length === 0">
+        <span jhiTranslate="ishtarApp.polo.home.notFound">No polos found</span>
+    </div>
+    <div class="table-responsive" *ngIf="polos?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nome"><span jhiTranslate="ishtarApp.polo.nome">Nome</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="email"><span jhiTranslate="ishtarApp.polo.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ddd"><span jhiTranslate="ishtarApp.polo.ddd">Ddd</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="telefone"><span jhiTranslate="ishtarApp.polo.telefone">Telefone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cidade.id"><span jhiTranslate="ishtarApp.polo.cidade">Cidade</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let polo of polos ;trackBy: trackId">
+                <td><a [routerLink]="['/polo', polo.id, 'view' ]">{{polo.id}}</a></td>
+                <td>{{polo.nome}}</td>
+                <td>{{polo.email}}</td>
+                <td>{{polo.ddd}}</td>
+                <td>{{polo.telefone}}</td>
+                <td>
+                    <div *ngIf="polo.cidade">
+                        <a [routerLink]="['../cidade', polo.cidade?.id, 'view' ]" >{{polo.cidade?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/polo', polo.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/polo', polo.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'polo', { outlets: { popup: polo.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="polos?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

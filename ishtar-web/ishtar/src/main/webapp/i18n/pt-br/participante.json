@@ -1,0 +1,32 @@
+{
+  "ishtarApp": {
+    "participante": {
+      "home": {
+        "title": "Participantes",
+        "createLabel": "Criar novo Participante",
+        "createOrEditLabel": "Criar ou editar Participante",
+        "notFound": "Nenhum Participante encontrado"
+      },
+      "created": "Um novo Participante foi criado com o identificador {{ param }}",
+      "updated": "Um Participante foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Participante foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Participante {{ id }}?"
+      },
+      "detail": {
+        "title": "Participante"
+      },
+      "email": "Email",
+      "nome": "Nome",
+      "ddd": "Ddd",
+      "telefone": "Telefone",
+      "notificar": "Notificar",
+      "aceito": "Aceito",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "dataAtualizacao": "Data Atualizacao",
+      "participacoes": "Participacoes",
+      "cidade": "Cidade"
+    }
+  }
+}

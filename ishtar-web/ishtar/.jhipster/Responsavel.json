@@ -1,0 +1,52 @@
+{
+    "name": "Responsavel",
+    "fields": [
+        {
+            "fieldName": "dataCadastro",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ativo",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "responsavel",
+            "relationshipName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "contato",
+            "otherEntityRelationshipName": "responsavel",
+            "relationshipName": "contatos"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "polo",
+            "otherEntityRelationshipName": "responsavel",
+            "relationshipName": "polos",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190702224322",
+    "entityTableName": "responsavel",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

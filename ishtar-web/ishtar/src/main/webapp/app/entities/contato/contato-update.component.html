@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-contato-heading" jhiTranslate="ishtarApp.contato.home.createOrEditLabel">Create or edit a Contato</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.contato.ddd" for="field_ddd">Ddd</label>
+                    <input type="text" class="form-control" name="ddd" id="field_ddd"
+                           formControlName="ddd"/>
+                    <div *ngIf="editForm.get('ddd').invalid && (editForm.get('ddd').dirty || editForm.get('ddd').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ddd').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 2 }">
+                        This field cannot be longer than 2 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.contato.telefone" for="field_telefone">Telefone</label>
+                    <input type="text" class="form-control" name="telefone" id="field_telefone"
+                           formControlName="telefone"/>
+                    <div *ngIf="editForm.get('telefone').invalid && (editForm.get('telefone').dirty || editForm.get('telefone').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('telefone').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 10 }">
+                        This field cannot be longer than 10 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.contato.responsavel" for="field_responsavel">Responsavel</label>
+                    <select class="form-control" id="field_responsavel" name="responsavel" formControlName="responsavel">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="responsavelOption.id === editForm.get('responsavel').value?.id ? editForm.get('responsavel').value : responsavelOption" *ngFor="let responsavelOption of responsavels; trackBy: trackResponsavelById">{{responsavelOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

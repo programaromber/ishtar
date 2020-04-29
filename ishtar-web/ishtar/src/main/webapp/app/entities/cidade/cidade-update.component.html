@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-cidade-heading" jhiTranslate="ishtarApp.cidade.home.createOrEditLabel">Create or edit a Cidade</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.cidade.municipio" for="field_municipio">Municipio</label>
+                    <select class="form-control" name="municipio" formControlName="municipio" id="field_municipio">
+                        <option value="BELEM">{{'ishtarApp.Municipio.BELEM' | translate}}</option>
+                        <option value="CASTANHAL">{{'ishtarApp.Municipio.CASTANHAL' | translate}}</option>
+                        <option value="RECIFE">{{'ishtarApp.Municipio.RECIFE' | translate}}</option>
+                    </select>
+                    <div *ngIf="editForm.get('municipio').invalid && (editForm.get('municipio').dirty || editForm.get('municipio').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('municipio').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.cidade.estado" for="field_estado">Estado</label>
+                    <select class="form-control" name="estado" formControlName="estado" id="field_estado">
+                        <option value="RO">{{'ishtarApp.Estado.RO' | translate}}</option>
+                        <option value="AC">{{'ishtarApp.Estado.AC' | translate}}</option>
+                        <option value="AM">{{'ishtarApp.Estado.AM' | translate}}</option>
+                        <option value="RR">{{'ishtarApp.Estado.RR' | translate}}</option>
+                        <option value="PA">{{'ishtarApp.Estado.PA' | translate}}</option>
+                        <option value="AP">{{'ishtarApp.Estado.AP' | translate}}</option>
+                        <option value="TO">{{'ishtarApp.Estado.TO' | translate}}</option>
+                        <option value="MA">{{'ishtarApp.Estado.MA' | translate}}</option>
+                        <option value="PI">{{'ishtarApp.Estado.PI' | translate}}</option>
+                        <option value="CE">{{'ishtarApp.Estado.CE' | translate}}</option>
+                        <option value="RN">{{'ishtarApp.Estado.RN' | translate}}</option>
+                        <option value="PB">{{'ishtarApp.Estado.PB' | translate}}</option>
+                        <option value="PE">{{'ishtarApp.Estado.PE' | translate}}</option>
+                        <option value="AL">{{'ishtarApp.Estado.AL' | translate}}</option>
+                        <option value="SE">{{'ishtarApp.Estado.SE' | translate}}</option>
+                        <option value="BA">{{'ishtarApp.Estado.BA' | translate}}</option>
+                        <option value="MG">{{'ishtarApp.Estado.MG' | translate}}</option>
+                        <option value="ES">{{'ishtarApp.Estado.ES' | translate}}</option>
+                        <option value="RJ">{{'ishtarApp.Estado.RJ' | translate}}</option>
+                        <option value="SP">{{'ishtarApp.Estado.SP' | translate}}</option>
+                        <option value="PR">{{'ishtarApp.Estado.PR' | translate}}</option>
+                        <option value="SC">{{'ishtarApp.Estado.SC' | translate}}</option>
+                        <option value="RS">{{'ishtarApp.Estado.RS' | translate}}</option>
+                        <option value="MS">{{'ishtarApp.Estado.MS' | translate}}</option>
+                        <option value="MT">{{'ishtarApp.Estado.MT' | translate}}</option>
+                        <option value="GO">{{'ishtarApp.Estado.GO' | translate}}</option>
+                        <option value="DF">{{'ishtarApp.Estado.DF' | translate}}</option>
+                    </select>
+                    <div *ngIf="editForm.get('estado').invalid && (editForm.get('estado').dirty || editForm.get('estado').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('estado').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-agenda-heading" jhiTranslate="ishtarApp.agenda.home.createOrEditLabel">Create or edit a Agenda</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.agenda.ano" for="field_ano">Ano</label>
+                    <input type="number" class="form-control" name="ano" id="field_ano"
+                           formControlName="ano"/>
+                    <div *ngIf="editForm.get('ano').invalid && (editForm.get('ano').dirty || editForm.get('ano').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ano').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ano').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 4 }">
+                            This field should be at least 4.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ano').errors.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 4 }">
+                            This field cannot be more than 4.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('ano')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.agenda.polo" for="field_polo">Polo</label>
+                    <select class="form-control" id="field_polo" name="polo" formControlName="polo">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="poloOption.id === editForm.get('polo').value?.id ? editForm.get('polo').value : poloOption" *ngFor="let poloOption of polos; trackBy: trackPoloById">{{poloOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

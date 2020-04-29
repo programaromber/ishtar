@@ -1,0 +1,95 @@
+{
+    "name": "Local",
+    "fields": [
+        {
+            "fieldName": "logradouro",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 80
+        },
+        {
+            "fieldName": "complememto",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 80
+        },
+        {
+            "fieldName": "bairro",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 80
+        },
+        {
+            "fieldName": "cep",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 8
+        },
+        {
+            "fieldName": "numero",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 8
+        },
+        {
+            "fieldName": "latitude",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "longitude",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "dataCadastro",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ativo",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "evento",
+            "otherEntityRelationshipName": "local",
+            "relationshipName": "eventos"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "polo",
+            "otherEntityRelationshipName": "locais",
+            "relationshipName": "polo",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190702224325",
+    "entityTableName": "local",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="responsavel">
+            <h2><span jhiTranslate="ishtarApp.responsavel.detail.title">Responsavel</span> {{responsavel.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ishtarApp.responsavel.dataCadastro">Data Cadastro</span></dt>
+                <dd>
+                    <span>{{responsavel.dataCadastro}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.responsavel.ativo">Ativo</span></dt>
+                <dd>
+                    <span>{{responsavel.ativo}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.responsavel.user">User</span></dt>
+                <dd>
+                    {{responsavel.user?.id}}
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.responsavel.polos">Polos</span></dt>
+                <dd>
+                    <span *ngFor="let polos of responsavel.polos; let last = last">
+                        <a [routerLink]="['/polo', polos?.id, 'view' ]">{{polos.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/responsavel', responsavel.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

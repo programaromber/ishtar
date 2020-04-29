@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="participacao">
+            <h2><span jhiTranslate="ishtarApp.participacao.detail.title">Participacao</span> {{participacao.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ishtarApp.participacao.nome">Nome</span></dt>
+                <dd>
+                    <span>{{participacao.nome}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.participacao.participante">Participante</span></dt>
+                <dd>
+                    <div *ngIf="participacao.participante">
+                        <a [routerLink]="['/participante', participacao.participante?.id, 'view']">{{participacao.participante?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.participacao.evento">Evento</span></dt>
+                <dd>
+                    <div *ngIf="participacao.evento">
+                        <a [routerLink]="['/evento', participacao.evento?.id, 'view']">{{participacao.evento?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/participacao', participacao.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="evento">
+            <h2><span jhiTranslate="ishtarApp.evento.detail.title">Evento</span> {{evento.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ishtarApp.evento.titulo">Titulo</span></dt>
+                <dd>
+                    <span>{{evento.titulo}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.evento.resumo">Resumo</span></dt>
+                <dd>
+                    <span>{{evento.resumo}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.evento.descricao">Descricao</span></dt>
+                <dd>
+                    <span>{{evento.descricao}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.evento.urlImagem">Url Imagem</span></dt>
+                <dd>
+                    <span>{{evento.urlImagem}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.evento.imagem">Imagem</span></dt>
+                <dd>
+                    <div *ngIf="evento.imagem">
+                        <a (click)="openFile(evento.imagemContentType, evento.imagem)">
+                            <img [src]="'data:' + evento.imagemContentType + ';base64,' + evento.imagem" style="max-width: 100%;" alt="evento image"/>
+                        </a>
+                        {{evento.imagemContentType}}, {{byteSize(evento.imagem)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.evento.dataEvento">Data Evento</span></dt>
+                <dd>
+                    <span>{{evento.dataEvento}}</span>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.evento.agenda">Agenda</span></dt>
+                <dd>
+                    <div *ngIf="evento.agenda">
+                        <a [routerLink]="['/agenda', evento.agenda?.id, 'view']">{{evento.agenda?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="ishtarApp.evento.local">Local</span></dt>
+                <dd>
+                    <div *ngIf="evento.local">
+                        <a [routerLink]="['/local', evento.local?.id, 'view']">{{evento.local?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/evento', evento.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

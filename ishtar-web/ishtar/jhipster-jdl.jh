@@ -1,0 +1,139 @@
+enum Estado {
+  RO,
+  AC,
+  AM,
+  RR,
+  PA,
+  AP,
+  TO,
+  MA,
+  PI,
+  CE,
+  RN,
+  PB,
+  PE,
+  AL,
+  SE,
+  BA,
+  MG,
+  ES,
+  RJ,
+  SP,
+  PR,
+  SC,
+  RS,
+  MS,
+  MT,
+  GO,
+  DF
+}
+
+enum Municipio {
+	BELEM,
+    CASTANHAL,
+    RECIFE
+}
+
+entity Cidade {
+	municipio Municipio required, 
+    estado Estado required
+}
+
+
+entity Contato {
+    ddd String  maxlength(2),
+    telefone String  maxlength(10)
+}
+
+
+entity Responsavel {
+    dataCadastro LocalDate required,
+    ativo Boolean required
+}
+
+entity Participante {
+	email String required maxlength(80),
+    nome String maxlength(80),
+    ddd String  maxlength(2),
+    telefone String  maxlength(10),
+    notificar Boolean required,
+    aceito Boolean required,
+    latitude BigDecimal,
+    longitude BigDecimal,
+    dataAtualizacao LocalDate required
+}
+
+
+entity Polo {
+	nome String required maxlength(80),
+    email String maxlength(80),
+    ddd String maxlength(2),
+    telefone String  maxlength(10),
+}
+
+
+entity Local {
+    logradouro String required maxlength(80),
+    complememto String maxlength(80),
+    bairro String required maxlength(80),
+    cep String required maxlength(8),
+    numero String required maxlength(8),
+    latitude BigDecimal,
+    longitude BigDecimal,
+    dataCadastro LocalDate required,
+    ativo Boolean required
+}
+
+entity Agenda {
+	ano Integer required min(4) max(4)
+}
+
+entity Evento {
+    titulo String required maxlength(80),
+    resumo String required maxlength(255),
+    descricao String required maxlength(4000),
+    urlImagem String maxlength(255),
+    imagem ImageBlob,
+    dataEvento LocalDate
+}
+
+entity Participacao {
+    nome String required maxlength(80)
+}
+
+
+
+relationship OneToMany {
+	Cidade{participantes} to Participante{cidade},
+    Participante{participacoes} to Participacao{participante},
+	Evento{participacoes} to Participacao{evento},
+	Polo{locais} to Local{polo},
+    Polo{agendas} to Agenda{polo},
+	Agenda{eventos} to Evento{agenda},
+	Local{eventos} to Evento{local},
+	Cidade{polos} to Polo{cidade},
+    Responsavel{contatos} to Contato{responsavel}
+   
+}
+
+relationship OneToOne {
+  Responsavel{user} to User{responsavel}
+}
+
+relationship ManyToMany {
+  Responsavel{polos} to Polo{responsavel}
+}
+
+
+// Set pagination options
+paginate all with infinite-scroll
+paginate all with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

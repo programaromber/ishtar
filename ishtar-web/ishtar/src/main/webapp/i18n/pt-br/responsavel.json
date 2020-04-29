@@ -1,0 +1,26 @@
+{
+  "ishtarApp": {
+    "responsavel": {
+      "home": {
+        "title": "Responsavels",
+        "createLabel": "Criar novo Responsavel",
+        "createOrEditLabel": "Criar ou editar Responsavel",
+        "notFound": "Nenhum Responsavel encontrado"
+      },
+      "created": "Um novo Responsavel foi criado com o identificador {{ param }}",
+      "updated": "Um Responsavel foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Responsavel foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Responsavel {{ id }}?"
+      },
+      "detail": {
+        "title": "Responsavel"
+      },
+      "dataCadastro": "Data Cadastro",
+      "ativo": "Ativo",
+      "user": "User",
+      "contatos": "Contatos",
+      "polos": "Polos"
+    }
+  }
+}

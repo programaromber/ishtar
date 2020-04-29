@@ -1,0 +1,39 @@
+{
+    "name": "Participacao",
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 80
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "participante",
+            "otherEntityRelationshipName": "participacoes",
+            "relationshipName": "participante",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "evento",
+            "otherEntityRelationshipName": "participacoes",
+            "relationshipName": "evento",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190702224328",
+    "entityTableName": "participacao",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

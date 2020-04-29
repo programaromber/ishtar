@@ -1,0 +1,120 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-evento-heading" jhiTranslate="ishtarApp.evento.home.createOrEditLabel">Create or edit a Evento</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.evento.titulo" for="field_titulo">Titulo</label>
+                    <input type="text" class="form-control" name="titulo" id="field_titulo"
+                           formControlName="titulo"/>
+                    <div *ngIf="editForm.get('titulo').invalid && (editForm.get('titulo').dirty || editForm.get('titulo').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('titulo').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('titulo').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 80 }">
+                        This field cannot be longer than 80 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.evento.resumo" for="field_resumo">Resumo</label>
+                    <input type="text" class="form-control" name="resumo" id="field_resumo"
+                           formControlName="resumo"/>
+                    <div *ngIf="editForm.get('resumo').invalid && (editForm.get('resumo').dirty || editForm.get('resumo').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('resumo').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('resumo').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 255 }">
+                        This field cannot be longer than 255 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.evento.descricao" for="field_descricao">Descricao</label>
+                    <input type="text" class="form-control" name="descricao" id="field_descricao"
+                           formControlName="descricao"/>
+                    <div *ngIf="editForm.get('descricao').invalid && (editForm.get('descricao').dirty || editForm.get('descricao').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('descricao').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('descricao').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 4000 }">
+                        This field cannot be longer than 4000 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.evento.urlImagem" for="field_urlImagem">Url Imagem</label>
+                    <input type="text" class="form-control" name="urlImagem" id="field_urlImagem"
+                           formControlName="urlImagem"/>
+                    <div *ngIf="editForm.get('urlImagem').invalid && (editForm.get('urlImagem').dirty || editForm.get('urlImagem').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('urlImagem').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 255 }">
+                        This field cannot be longer than 255 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.evento.imagem" for="field_imagem">Imagem</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('imagemContentType').value + ';base64,' + editForm.get('imagem').value" style="max-height: 100px;" *ngIf="editForm.get('imagem').value" alt="evento image"/>
+                        <div *ngIf="editForm.get('imagem').value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('imagemContentType').value}}, {{byteSize(editForm.get('imagem').value)}}</span>
+                            <button type="button" (click)="clearInputImage('imagem', 'imagemContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_imagem" (change)="setFileData($event, 'imagem', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="imagem" id="field_imagem"
+                           formControlName="imagem"/>
+                    <input type="hidden" class="form-control" name="imagemContentType" id="field_imagemContentType"
+                           formControlName="imagemContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.evento.dataEvento" for="field_dataEvento">Data Evento</label>
+                    <div class="input-group">
+                        <input id="field_dataEvento" type="text" class="form-control" name="dataEvento" ngbDatepicker  #dataEventoDp="ngbDatepicker" formControlName="dataEvento"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dataEventoDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.evento.agenda" for="field_agenda">Agenda</label>
+                    <select class="form-control" id="field_agenda" name="agenda" formControlName="agenda">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="agendaOption.id === editForm.get('agenda').value?.id ? editForm.get('agenda').value : agendaOption" *ngFor="let agendaOption of agenda; trackBy: trackAgendaById">{{agendaOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ishtarApp.evento.local" for="field_local">Local</label>
+                    <select class="form-control" id="field_local" name="local" formControlName="local">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="localOption.id === editForm.get('local').value?.id ? editForm.get('local').value : localOption" *ngFor="let localOption of locals; trackBy: trackLocalById">{{localOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

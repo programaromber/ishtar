@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "br.com.ishtar",
+      "nativeLanguage": "pt-br"
+    },
+    "jhipsterVersion": "6.1.2",
+    "applicationType": "monolith",
+    "baseName": "ishtar",
+    "packageName": "br.com.ishtar",
+    "packageFolder": "br/com/ishtar",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NjI0YmIwNmIyMWY2MjBmNzNlZjE5Nzc1MTAzMzBhOGQ1MTczNzZhYTYyNzZlYmUzZjdkOTU5YmVjYzQ4Y2YyZTcxYWVlOTc4NGI0Zjk5M2U4OWRjNzkxM2NlMzRjNjgwZDJhYjhlN2EwY2NlNTRhMzEzYjliM2ExOTAxYTMyZDA=",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "pt-br",
+    "languages": ["pt-br"]
+  }
+}

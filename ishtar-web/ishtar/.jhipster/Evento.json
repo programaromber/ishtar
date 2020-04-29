@@ -1,0 +1,80 @@
+{
+    "name": "Evento",
+    "fields": [
+        {
+            "fieldName": "titulo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 80
+        },
+        {
+            "fieldName": "resumo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        },
+        {
+            "fieldName": "descricao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 4000
+        },
+        {
+            "fieldName": "urlImagem",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        },
+        {
+            "fieldName": "imagem",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "dataEvento",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "participacao",
+            "otherEntityRelationshipName": "evento",
+            "relationshipName": "participacoes"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "agenda",
+            "otherEntityRelationshipName": "eventos",
+            "relationshipName": "agenda",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "local",
+            "otherEntityRelationshipName": "eventos",
+            "relationshipName": "local",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190702224327",
+    "entityTableName": "evento",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

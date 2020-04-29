@@ -1,0 +1,24 @@
+{
+  "ishtarApp": {
+    "participacao": {
+      "home": {
+        "title": "Participacaos",
+        "createLabel": "Criar novo Participacao",
+        "createOrEditLabel": "Criar ou editar Participacao",
+        "notFound": "Nenhum Participacao encontrado"
+      },
+      "created": "Um novo Participacao foi criado com o identificador {{ param }}",
+      "updated": "Um Participacao foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Participacao foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Participacao {{ id }}?"
+      },
+      "detail": {
+        "title": "Participacao"
+      },
+      "nome": "Nome",
+      "participante": "Participante",
+      "evento": "Evento"
+    }
+  }
+}

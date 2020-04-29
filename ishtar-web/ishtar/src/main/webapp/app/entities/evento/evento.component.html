@@ -1,0 +1,92 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="ishtarApp.evento.home.title">Eventos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-evento" [routerLink]="['/evento/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="ishtarApp.evento.home.createLabel">
+            Create new Evento
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="eventos?.length === 0">
+        <span jhiTranslate="ishtarApp.evento.home.notFound">No eventos found</span>
+    </div>
+    <div class="table-responsive" *ngIf="eventos?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="titulo"><span jhiTranslate="ishtarApp.evento.titulo">Titulo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="resumo"><span jhiTranslate="ishtarApp.evento.resumo">Resumo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="descricao"><span jhiTranslate="ishtarApp.evento.descricao">Descricao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="urlImagem"><span jhiTranslate="ishtarApp.evento.urlImagem">Url Imagem</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imagem"><span jhiTranslate="ishtarApp.evento.imagem">Imagem</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dataEvento"><span jhiTranslate="ishtarApp.evento.dataEvento">Data Evento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="agenda.id"><span jhiTranslate="ishtarApp.evento.agenda">Agenda</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="local.id"><span jhiTranslate="ishtarApp.evento.local">Local</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let evento of eventos ;trackBy: trackId">
+                <td><a [routerLink]="['/evento', evento.id, 'view' ]">{{evento.id}}</a></td>
+                <td>{{evento.titulo}}</td>
+                <td>{{evento.resumo}}</td>
+                <td>{{evento.descricao}}</td>
+                <td>{{evento.urlImagem}}</td>
+                <td>
+                    <a *ngIf="evento.imagem" (click)="openFile(evento.imagemContentType, evento.imagem)">
+                        <img [src]="'data:' + evento.imagemContentType + ';base64,' + evento.imagem" style="max-height: 30px;" alt="evento image"/>
+                    </a>
+                    <span *ngIf="evento.imagem">{{evento.imagemContentType}}, {{byteSize(evento.imagem)}}</span>
+                </td>
+                <td>{{evento.dataEvento | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="evento.agenda">
+                        <a [routerLink]="['../agenda', evento.agenda?.id, 'view' ]" >{{evento.agenda?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="evento.local">
+                        <a [routerLink]="['../local', evento.local?.id, 'view' ]" >{{evento.local?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/evento', evento.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/evento', evento.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'evento', { outlets: { popup: evento.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="eventos?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

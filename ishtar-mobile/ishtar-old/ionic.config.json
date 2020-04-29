@@ -1,0 +1,7 @@
+{
+  "name": "ishtar",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
